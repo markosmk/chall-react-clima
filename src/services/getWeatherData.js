@@ -32,8 +32,7 @@ export const getCurrentInfo = (current, timezone_offset, city) => {
 export const getFiveDays = (daily, timezone_offset) => {
   return daily.slice(0, -2).map((item) => {
     return {
-      // .utcOffset(timezone_offset/60)
-      date: parseDate(item.dt, 'LT', timezone_offset), // 'dddd'
+      date: parseDate(item.dt, 'dddd', timezone_offset), // 'dddd'
       icon: `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`,
       temperature: item.temp.day + ' °C',
       description: item.weather[0].description,
