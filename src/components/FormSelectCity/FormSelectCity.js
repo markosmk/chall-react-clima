@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { listCitiesSelected as cities } from '../../services/listCitiesSelected';
+import IconLocation from '../common/IconLocation';
 
 const FormSelectCity = ({ handleSelect, handleGeolocation }) => {
   const [city, setCity] = useState({ id: '' });
@@ -23,7 +24,7 @@ const FormSelectCity = ({ handleSelect, handleGeolocation }) => {
         onChange={onChangeSelect}
       >
         <option value="" disabled>
-          --- Selecciona una Ciudad de la lista ---
+          - Selecciona una Ciudad -
         </option>
         {cities &&
           cities.map((item) => (
@@ -35,9 +36,10 @@ const FormSelectCity = ({ handleSelect, handleGeolocation }) => {
       <button
         type="button"
         onClick={handleGeolocation}
-        className="ml-4 flex-shrink-0 px-4 border-0 text-sm font-medium rounded-md text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-0 active:bg-sky-800 transition-colors"
+        className="ml-4 flex-shrink-0 px-4 border-0 text-sm font-medium rounded-md text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-0 active:bg-sky-800 transition-colors w-14 sm:w-auto"
       >
-        Ver Actual
+        <IconLocation className="h-6 w-6 sm:h-4 sm:w-4 inline-flex" />
+        <span className="hidden sm:ml-2 sm:inline-flex">Ver Actual</span>
       </button>
     </form>
   );
