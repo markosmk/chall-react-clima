@@ -51,7 +51,7 @@ export const getForecastByGeolocation = async (value) => {
 
 // get data with geolocation HTML5 or a fetch to https://geolocation-db.com/json/
 export const getForecastByActualLocation = async () => {
-  if (navigator.geolocation) {
+  if (!navigator.geolocation) {
     return getForecastLocalByIp();
   } else {
     const location = await new Promise((resolve, reject) => {
