@@ -15,7 +15,7 @@ export const getCurrentInfo = (current, city) => {
     sunrise: dayjs.unix(current.sunrise).format('LT'),
     sunset: dayjs.unix(current.sunset).format('LT'),
     description: current.weather[0].description.toUpperCase(),
-    icon: `http://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`,
+    icon: `https://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`,
   };
 };
 
@@ -24,7 +24,7 @@ export const getFiveDays = (daily) => {
   return daily.slice(0, -2).map((item) => {
     return {
       date: dayjs.unix(item.dt).format('dddd'),
-      icon: `http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`,
+      icon: `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`,
       temperature: item.temp.day + ' °C',
       description: item.weather[0].description,
     };
