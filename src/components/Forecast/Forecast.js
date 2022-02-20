@@ -1,77 +1,35 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import Spinner from '../common/Spinner';
+import ButtonEmptyState from '../common/ButtonEmptyState';
+
 import WeatherCurrentInfo from '../WeatherCurrentInfo';
 import WeatherFiveDays from '../WeatherFiveDays';
 import FormSelectCity from '../FormSelectCity';
+import FormSearchCity from '../FormSearchCity';
 
-import {
-  getForecastByActualLocation,
-  getForecastByCoordinates,
-  getForecastLocalByIp,
-} from '../../services/getDataApi';
-import { getCurrentInfo, getFiveDays } from '../../services/getWeatherData';
+import useForecastSearch from '../../hooks/useForecastSearch';
 
 const Forecast = () => {
-  const [isLoading, setLoading] = useState(false);
-  const [city, setCity] = useState({});
-  const [weather, setWeather] = useState(false);
-  const [isError, setError] = useState('');
-
-  const getCurrentForecast = async () => {
-    setLoading(true);
-    setError(false);
-    try {
-      const cityLocal = await getForecastByActualLocation();
-      if (!cityLocal.hasOwnProperty('name')) {
-        const data = await getForecastLocalByIp();
-        setCity(data);
-      } else {
-        setCity(cityLocal);
-      }
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { result, isLoading, isError, processRequest, processSearch } =
+    useForecastSearch();
 
   useEffect(() => {
-    getCurrentForecast();
+    processRequest();
+    // eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
-    if (city.lon && city.lat) {
-      const updateForecast = async () => {
-        setLoading(true);
-        setError(false);
-        try {
-          const data = await getForecastByCoordinates(city);
-          const dataForecast = {
-            current: getCurrentInfo(data.current, city),
-            daily: getFiveDays(data.daily),
-          };
-          setWeather(dataForecast);
-        } catch (error) {
-          setError(error.message);
-        } finally {
-          setLoading(false);
-        }
-      };
-      updateForecast();
-    }
-  }, [city]);
-
   const handleSelect = (citySelected) => {
-    setCity(citySelected);
+    processRequest(citySelected);
   };
 
   const handleGeolocation = () => {
-    getCurrentForecast();
+    processRequest();
   };
 
   return (
     <>
+      <FormSearchCity handleSubmit={processSearch} />
       <FormSelectCity handleSelect={handleSelect} handleGeolocation={handleGeolocation} />
 
       {isError && (
@@ -80,21 +38,17 @@ const Forecast = () => {
         </p>
       )}
 
-      {isLoading && (
-        <div className="absolute top-6 right-2">
-          <Spinner />
-        </div>
-      )}
-
-      {weather.hasOwnProperty('current') && (
-        <div
-          className={
-            isLoading ? 'blur scale-90 transition' : 'transform scale-100 duration-300 '
-          }
-        >
-          <WeatherCurrentInfo current={weather.current} />
-          <WeatherFiveDays daily={weather.daily} />
-        </div>
+      {isLoading ? (
+        <Spinner centered />
+      ) :
+      // if object result is empty show button to get local weather
+      !result.hasOwnProperty('current') ? (
+        <ButtonEmptyState handleGeolocation={handleGeolocation} />
+      ) : (
+        <>
+          <WeatherCurrentInfo current={result.current} />
+          <WeatherFiveDays daily={result.daily} />
+        </>
       )}
     </>
   );
