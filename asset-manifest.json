@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/chall-react-clima/static/css/main.91d4c474.css",
-    "main.js": "/chall-react-clima/static/js/main.93aec3a7.js",
+    "main.js": "/chall-react-clima/static/js/main.ec1e8a76.js",
     "index.html": "/chall-react-clima/index.html",
     "main.91d4c474.css.map": "/chall-react-clima/static/css/main.91d4c474.css.map",
-    "main.93aec3a7.js.map": "/chall-react-clima/static/js/main.93aec3a7.js.map"
+    "main.ec1e8a76.js.map": "/chall-react-clima/static/js/main.ec1e8a76.js.map"
   },
   "entrypoints": [
     "static/css/main.91d4c474.css",
-    "static/js/main.93aec3a7.js"
+    "static/js/main.ec1e8a76.js"
   ]
 }
