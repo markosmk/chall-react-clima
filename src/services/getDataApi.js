@@ -5,16 +5,16 @@ export const API_URL = `https://api.openweathermap.org/data/2.5/onecall?appid=${
 
 // Geocoding API
 // https://openweathermap.org/api/geocoding-api
-export const API_URL_GEOCODING = `http://api.openweathermap.org/geo/1.0/direct?appid=${process.env.REACT_APP_API_KEY}`;
+export const API_URL_GEOCODING = `https://api.openweathermap.org/geo/1.0/direct?appid=${process.env.REACT_APP_API_KEY}`;
 
 // Current weather data
 // https://openweathermap.org/current
-// export const API_URL_CURRENT_WEATHER = `http://api.openweathermap.org/data/2.5/weather?appid=${process.env.REACT_APP_API_KEY}&units=metric&lang=es`;
+// export const API_URL_CURRENT_WEATHER = `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.REACT_APP_API_KEY}&units=metric&lang=es`;
 //..&lat={lat}&lon={lon}
 
 // 5 day weather forecast
 //https://openweathermap.org/forecast5
-// export const API_URL_5_FORECAST = `http://api.openweathermap.org/data/2.5/forecast?appid=${process.env.REACT_APP_API_KEY}&units=metric&lang=es`;
+// export const API_URL_5_FORECAST = `https://api.openweathermap.org/data/2.5/forecast?appid=${process.env.REACT_APP_API_KEY}&units=metric&lang=es`;
 //..&lat={lat}&lon={lon}
 
 export const getForecastByCoordinates = async (city) => {
