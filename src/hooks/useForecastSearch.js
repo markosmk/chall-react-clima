@@ -65,8 +65,8 @@ const useForecastSearch = () => {
 
   // simply to keep the data logic for components in one section
   const orderData = (data, city) => {
-    const current = getCurrentInfo(data.current, city);
-    const daily = getFiveDays(data.daily);
+    const current = getCurrentInfo(data.current, data.timezone_offset, city);
+    const daily = getFiveDays(data.daily, data.timezone_offset);
     return { current, daily };
   };
 
