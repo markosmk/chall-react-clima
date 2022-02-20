@@ -19,8 +19,8 @@ const WeatherCurrentInfo = ({ current }) => {
               <small className="text-slate-400">{current.description}</small>
             </div>
             <div className="text-right">
-              <img src={current.icon} alt="" className="w-24 h-24 mx-auto" />
-              <h3 className="font-bold text-3xl">{current.temperature}</h3>
+              <img src={current.icon} alt="icon weather" className="w-18 h-18 sm:w-24 sm:h-24 mx-auto" />
+              <h3 className="font-bold whitespace-nowrap text-xl sm:text-3xl">{current.temperature}</h3>
             </div>
           </div>
           <div className="block sm:flex justify-between items-center flex-wrap border-t border-slate-100 pt-4">
