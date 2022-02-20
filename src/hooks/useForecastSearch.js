@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import {
-  getForecastByActualLocation,
+  getForecastLocalByIp,
   getForecastByCoordinates,
   getForecastByGeolocation, // for search feature
 } from '../services/getDataApi';
@@ -30,7 +30,7 @@ const useForecastSearch = () => {
     try {
       // if argument city is null get actual location
       if (!city) {
-        cityLocal = await getForecastByActualLocation();
+        cityLocal = await getForecastLocalByIp();
       }
       const data = await getForecastCity(city || cityLocal);
 
