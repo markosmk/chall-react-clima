@@ -1,9 +1,9 @@
-import Forecast from './components/Forecast';
-import IconClima from './components/Icons/IconClima';
+import Forecast from './components/Forecast/Forecast';
+import IconClima from './components/common/IconClima';
 
 function App() {
   return (
-    <div className="max-w-xl mx-auto p-4 sm:px-0">
+    <div className="max-w-xl mx-auto p-4 sm:px-0 relative">
       <div className="text-center">
         <IconClima />
         <h2 className="mt-2 text-lg font-medium text-black">Clima App</h2>
