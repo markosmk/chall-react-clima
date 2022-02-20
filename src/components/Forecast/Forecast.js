@@ -40,6 +40,10 @@ const Forecast = () => {
 
       {isLoading ? (
         <Spinner centered />
+      ) :
+      // if object result is empty show button to get local weather
+      !result.hasOwnProperty('current') ? (
+        <ButtonEmptyState handleGeolocation={handleGeolocation} />
       ) : (
         <>
           <WeatherCurrentInfo current={result.current} />
